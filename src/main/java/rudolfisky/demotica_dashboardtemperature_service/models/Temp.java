@@ -16,7 +16,12 @@ public class Temp {
 
     private Double temp;
 
+    public Temp() {
+    }
 
+    public Temp(Double temp) {
+        this.temp = temp;
+    }
 
     public LocalDateTime getDate() {
         return creationDateTime;

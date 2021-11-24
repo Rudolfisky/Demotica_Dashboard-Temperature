@@ -1,4 +1,4 @@
-package rudolfisky.demotica_dashboardtemperature_service;
+package rudolfisky.demotica_dashboardtemperature_service.configurations;
 
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.springframework.beans.factory.annotation.Autowired;
