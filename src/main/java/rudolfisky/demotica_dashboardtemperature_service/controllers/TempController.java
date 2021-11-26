@@ -8,6 +8,7 @@ import rudolfisky.demotica_dashboardtemperature_service.resources.TempDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import rudolfisky.demotica_dashboardtemperature_service.services.TempService;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -18,101 +19,44 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000", "http://192.168.0.67:3000"})
 @RequestMapping(path="/temps")
 public class TempController {
+//    @Autowired
+//    private TempDB tempDB;
     @Autowired
-    private TempDB tempDB;
+    private TempService service;
 
-    @GetMapping(path="/all")
-    public @ResponseBody Iterable<Temp> getAll()  {
-        return tempDB.findAll();
-    }
+//    @GetMapping(path="/all")
+//    public @ResponseBody Iterable<Temp> getAll()  {
+//        return service.findAll();
+//    }
 
     @GetMapping(path="/average/all")
     public @ResponseBody double getallAvg()  {
-        Iterable<Temp> temps = tempDB.findAll();
-
-        double sum = 0;
-        int count = 0;
-        for (Temp temp : temps) {
-            sum += temp.getTemp();
-            count += 1;
-        }
-        double avg = sum / count;
-
-        System.out.println(sum);
-        System.out.println(avg);
-        return avg;
+        return service.getallAvg();
     }
 
     @GetMapping(path="/test/random")
     public @ResponseBody int getRandom()  {
-        int randomWithMathRandom = (int) ((Math.random() * (50 - -20)) + -20);
-
-        return randomWithMathRandom;
+        return service.getRandom();
     }
 
     @GetMapping(path="/past/7days")
     public @ResponseBody Iterable<Temp> getWeek()  {
-        List<Temp> temps = tempDB.getPast7Days();
-        double sum = 0;
-        for (Temp temp : temps){
-            sum += temp.getTemp();
-        }
-        double avg = sum / temps.size();
-        avg = avg * 100;
-        avg = Math.round(avg);
-        avg = avg / 100;
-
-        System.out.println(sum);
-        System.out.println(avg);
-        return temps;
+        return service.getWeek();
     }
 
     @GetMapping(path="/average/hour")
     public @ResponseBody double getHour()  {
-        List<Temp> temps = tempDB.getPastHour();
-        double sum = 0;
-        for (Temp temp : temps){
-            sum += temp.getTemp();
-        }
-        double avg = sum / temps.size();
-        avg = avg * 100;
-        avg = Math.round(avg);
-        avg = avg / 100;
-
-        System.out.println(sum);
-        System.out.println(avg);
-        return avg;
+        return service.getHour();
     }
 
     @GetMapping(path="/average/minute")
     public @ResponseBody double getMinuteAvg()  {
-        List<Temp> temps = tempDB.getPastMinute();
-        double sum = 0;
-        for (Temp temp : temps){
-            sum += temp.getTemp();
-        }
-        double avg = sum / temps.size();
-        System.out.println(sum);
-        System.out.println(avg);
-        avg = Math.round(avg * 100) / 100;
-        return avg;
+        return service.getMinuteAvg();
     }
 
     @GetMapping(path="/average/10sec")
     public @ResponseBody double get10SecAvg()  {
-        List<Temp> temps = tempDB.getPast10sec();
-        double sum = 0;
-        for (Temp temp : temps){
-            sum += temp.getTemp();
-        }
-        double avg = sum / temps.size();
-        avg = avg * 100;
-        avg = Math.round(avg);
-        avg = avg / 100;
-
-        System.out.println(sum);
-        System.out.println(avg);
-        return avg;
+        return service.get10SecAvg();
     }
 
     @GetMapping(value = "/message")
@@ -123,7 +67,7 @@ public class TempController {
     }
     @DeleteMapping(value = "/cleartemp")
     public void clearTemp() {
-        tempDB.deleteTempOlderThen1min();
+        service.clearTemp();
     }
 //    @PostMapping(path="/add")
 //    public @ResponseBody Iterable<Daily> getWeek()  {

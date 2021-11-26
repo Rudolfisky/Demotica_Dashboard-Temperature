@@ -1,6 +1,7 @@
 package rudolfisky.demotica_dashboardtemperature_service.resources;
 
 import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import rudolfisky.demotica_dashboardtemperature_service.models.Daily;
 import rudolfisky.demotica_dashboardtemperature_service.models.Temp;
@@ -9,6 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Repository
 public interface TempDB extends CrudRepository<Temp, Long> {
 //    List<Daily> findByCompleteDtBetween(final LocalDateTime startDate, final LocalDateTime endDate);
 

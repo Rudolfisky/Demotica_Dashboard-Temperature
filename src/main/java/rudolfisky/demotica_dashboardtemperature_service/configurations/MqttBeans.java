@@ -19,6 +19,7 @@ import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.MessagingException;
 import rudolfisky.demotica_dashboardtemperature_service.models.Temp;
 import rudolfisky.demotica_dashboardtemperature_service.resources.TempDB;
+import rudolfisky.demotica_dashboardtemperature_service.services.TempService;
 
 import javax.persistence.Convert;
 
@@ -26,7 +27,7 @@ import javax.persistence.Convert;
 public class MqttBeans {
 
     @Autowired
-    private TempDB tempDB;
+    private TempService service;
 
     public MqttPahoClientFactory mqttpahoClientFactory(){
         DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
@@ -72,7 +73,7 @@ public class MqttBeans {
                     double recievedTemp = Double.parseDouble(message.getPayload().toString());
                     Temp temp = new Temp(recievedTemp);
 //                    System.out.println(temp);
-                    tempDB.save(temp);
+                    service.saveTemp(temp);
                 }
                 // System.out.println(message.getPayload());
             }
