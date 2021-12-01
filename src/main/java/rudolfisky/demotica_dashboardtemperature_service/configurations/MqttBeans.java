@@ -29,69 +29,69 @@ public class MqttBeans {
     @Autowired
     private TempService service;
 
-//    public MqttPahoClientFactory mqttpahoClientFactory(){
-//        DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
-//        MqttConnectOptions options = new MqttConnectOptions();
-//
-//        options.setServerURIs(new String[] {"tcp://192.168.0.70:1883"});
-//        options.setUserName("admin");
-//        options.setUserName("admin");
-//        String pass = "1234";
-//        options.setPassword(pass.toCharArray());
-//        options.setCleanSession(true);
-//
-//        factory.setConnectionOptions(options);
-//        return factory;
-//    }
-//
-//    @Bean
-//    public MessageChannel mqttInputChannel(){
-//        return new DirectChannel();
-//    }
-//
-//    @Bean
-//    public MessageProducer inbound() {
-//        MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter("serverIn",
-//                mqttpahoClientFactory(), "#");
-//        adapter.setCompletionTimeout(5000);
-//        adapter.setConverter(new DefaultPahoMessageConverter());
-//        adapter.setQos(2);
-//        adapter.setOutputChannel(mqttInputChannel());
-//        return adapter;
-//    }
-//
-//    @Bean
-//    @ServiceActivator(inputChannel = "mqttInputChannel")
-//    public MessageHandler handler() {
-//        return new MessageHandler() {
-//            @Override
-//            public void handleMessage(Message<?> message) throws MessagingException {
-//                String topic = message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC).toString();
-//                if (topic.equals("tempC")) {
-////                    System.out.println("This is our topic");
-////                    System.out.println(message.getPayload());
-//                    double recievedTemp = Double.parseDouble(message.getPayload().toString());
-//                    Temp temp = new Temp(recievedTemp);
-////                    System.out.println(temp);
-//                    service.saveTemp(temp);
-//                }
-//                // System.out.println(message.getPayload());
-//            }
-//        };
-//    }
-//
-//    @Bean
-//    public MessageChannel mqttOutboundChannel() {
-//        return new DirectChannel();
-//    }
-//
-//    @Bean
-//    @ServiceActivator(inputChannel = "mqttOutboundChannel")
-//    public MessageHandler mqttOutbound() {
-//        MqttPahoMessageHandler messageHandler = new MqttPahoMessageHandler("serverOut", mqttpahoClientFactory());
-//        messageHandler.setAsync(true);
-//        messageHandler.setDefaultTopic("#");
-//        return messageHandler;
-//    }
+    public MqttPahoClientFactory mqttpahoClientFactory(){
+        DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
+        MqttConnectOptions options = new MqttConnectOptions();
+
+        options.setServerURIs(new String[] {"tcp://192.168.0.70:1883"});
+        options.setUserName("admin");
+        options.setUserName("admin");
+        String pass = "1234";
+        options.setPassword(pass.toCharArray());
+        options.setCleanSession(true);
+
+        factory.setConnectionOptions(options);
+        return factory;
+    }
+
+    @Bean
+    public MessageChannel mqttInputChannel(){
+        return new DirectChannel();
+    }
+
+    @Bean
+    public MessageProducer inbound() {
+        MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter("serverIn",
+                mqttpahoClientFactory(), "#");
+        adapter.setCompletionTimeout(5000);
+        adapter.setConverter(new DefaultPahoMessageConverter());
+        adapter.setQos(2);
+        adapter.setOutputChannel(mqttInputChannel());
+        return adapter;
+    }
+
+    @Bean
+    @ServiceActivator(inputChannel = "mqttInputChannel")
+    public MessageHandler handler() {
+        return new MessageHandler() {
+            @Override
+            public void handleMessage(Message<?> message) throws MessagingException {
+                String topic = message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC).toString();
+                if (topic.equals("tempC")) {
+//                    System.out.println("This is our topic");
+//                    System.out.println(message.getPayload());
+                    double recievedTemp = Double.parseDouble(message.getPayload().toString());
+                    Temp temp = new Temp(recievedTemp);
+//                    System.out.println(temp);
+                    service.saveTemp(temp);
+                }
+                // System.out.println(message.getPayload());
+            }
+        };
+    }
+
+    @Bean
+    public MessageChannel mqttOutboundChannel() {
+        return new DirectChannel();
+    }
+
+    @Bean
+    @ServiceActivator(inputChannel = "mqttOutboundChannel")
+    public MessageHandler mqttOutbound() {
+        MqttPahoMessageHandler messageHandler = new MqttPahoMessageHandler("serverOut", mqttpahoClientFactory());
+        messageHandler.setAsync(true);
+        messageHandler.setDefaultTopic("#");
+        return messageHandler;
+    }
 
 }

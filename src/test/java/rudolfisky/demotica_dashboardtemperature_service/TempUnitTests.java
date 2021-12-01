@@ -55,14 +55,15 @@ public class TempUnitTests {
         //Assert
         verify(tempDB).findAll();
     }
-
-    //needs some work
+    
     @Test
-    void deleteTempOlderThan10Min() {
-//        //Execute
-//        underTest.deleteTempOlderThan10Min();
-//        //Assert
-//        verify(productRepository).deleteById(1);
+    void deleteTempById() {
+        //Assign
+        long id = 1;
+        //Execute
+        underTest.deleteTempById(id);
+        //Assert
+        verify(tempDB).deleteById(id);
     }
 
 }

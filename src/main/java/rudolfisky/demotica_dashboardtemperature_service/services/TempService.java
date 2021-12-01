@@ -111,7 +111,11 @@ public class TempService {
         return avg;
     }
 
-    public void clearTemp() {
+    public void deleteTempOlderThen1min() {
         tempDB.deleteTempOlderThen1min();
+    }
+
+    public void deleteTempById(long id) {
+        tempDB.deleteById(id);
     }
 }

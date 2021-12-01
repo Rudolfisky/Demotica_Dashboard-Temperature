@@ -66,8 +66,8 @@ public class TempController {
         return "Hello there!";
     }
     @DeleteMapping(value = "/cleartemp")
-    public void clearTemp() {
-        service.clearTemp();
+    public void deleteTempOlderThen1min() {
+        service.deleteTempOlderThen1min();
     }
 //    @PostMapping(path="/add")
 //    public @ResponseBody Iterable<Daily> getWeek()  {
