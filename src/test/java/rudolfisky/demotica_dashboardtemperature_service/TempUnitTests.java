@@ -5,11 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.TestPropertySource;
 import rudolfisky.demotica_dashboardtemperature_service.models.Temp;
 import rudolfisky.demotica_dashboardtemperature_service.resources.TempDB;
 import rudolfisky.demotica_dashboardtemperature_service.services.TempService;
@@ -17,7 +13,6 @@ import rudolfisky.demotica_dashboardtemperature_service.services.TempService;
 import static org.mockito.Mockito.verify;
 
 @DataJpaTest
-//@ActiveProfiles("test")
 public class TempUnitTests {
 
     @Mock
@@ -55,7 +50,7 @@ public class TempUnitTests {
         //Assert
         verify(tempDB).findAll();
     }
-    
+
     @Test
     void deleteTempById() {
         //Assign

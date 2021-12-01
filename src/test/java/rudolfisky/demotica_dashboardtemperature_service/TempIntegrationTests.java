@@ -1,69 +1,43 @@
 package rudolfisky.demotica_dashboardtemperature_service;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import net.minidev.json.JSONObject;
+import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.TestPropertySource;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import rudolfisky.demotica_dashboardtemperature_service.models.Temp;
-import rudolfisky.demotica_dashboardtemperature_service.resources.TempDB;
-import rudolfisky.demotica_dashboardtemperature_service.services.TempService;
+import org.springframework.http.HttpHeaders;
 
-import static org.mockito.Mockito.verify;
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class TempIntegrationTests {
 
-@DataJpaTest
-//@ActiveProfiles("test")
-public class TempUnitTests {
+    @Autowired
+    private TestRestTemplate testRestTemplate;
 
-    @Mock
-    private TempDB tempDB;
-    private AutoCloseable autoCloseable;
-    private TempService underTest;
+    private String tempUrl;
+    private HttpHeaders headers;
+    private JSONObject tempPostObject;
 
     //before start of every test
     @BeforeEach
     void setUp() {
-        autoCloseable = MockitoAnnotations.openMocks(this);
-        underTest = new TempService(tempDB);
+        tempUrl = "/temps";
+        headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        tempPostObject = new JSONObject();
+        tempPostObject.put("creationDateTime", "2021-11-12 12:34:56");
+        tempPostObject.put("temp", "20");
     }
 
-    //end of every test
-    @AfterEach
-    void tearDown() throws Exception {
-        autoCloseable.close();
-    }
-
-    @Test
-    void saveTemp() {
-        //Assign
-        Temp temp = new Temp();
-        //Execute
-        underTest.saveTemp(temp);
-        //Assert
-        verify(tempDB).save(temp);
-    }
-
-    @Test
-    void getTemp() {
-        //Execute
-        underTest.findAll();
-        //Assert
-        verify(tempDB).findAll();
-    }
-    
-    @Test
-    void deleteTempById() {
-        //Assign
-        long id = 1;
-        //Execute
-        underTest.deleteTempById(id);
-        //Assert
-        verify(tempDB).deleteById(id);
-    }
+//    @Test
+//    void getAverageTempAll() {
+//        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/all", Temp.class);
+//        Assertions.assertNotNull(result);
+//        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
+//    }
 
 }
