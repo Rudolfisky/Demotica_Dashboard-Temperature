@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.util.Assert;
 import rudolfisky.demotica_dashboardtemperature_service.models.Temp;
 import rudolfisky.demotica_dashboardtemperature_service.resources.TempDB;
 import rudolfisky.demotica_dashboardtemperature_service.services.TempService;
@@ -60,5 +61,4 @@ public class TempUnitTests {
         //Assert
         verify(tempDB).deleteById(id);
     }
-
 }
