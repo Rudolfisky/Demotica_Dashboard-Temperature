@@ -68,6 +68,6 @@ public class TempUnitTests {
         //Execute
         isTrue = false;
         //Assert
-        Assert.isTrue(isTrue, "is true");
+        Assert.isTrue(isTrue, "The bool isTrue is set to false");
     }
 }
