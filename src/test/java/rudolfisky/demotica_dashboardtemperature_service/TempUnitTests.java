@@ -61,13 +61,4 @@ public class TempUnitTests {
         //Assert
         verify(tempDB).deleteById(id);
     }
-    @Test
-    void failedTest() {
-        //Assign
-        boolean isTrue;
-        //Execute
-        isTrue = false;
-        //Assert
-        Assert.isTrue(isTrue, "The bool isTrue is set to false");
-    }
 }
