@@ -42,24 +42,24 @@ public class TempIntegrationTests {
         tempPostObject.put("temp", "20");
     }
 
-    @Test
-    void getallAvg() {
-        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/all", Temp.class);
-        Assertions.assertNotNull(result);
-        System.out.println("result");
-        System.out.println(result.getBody().toString());
-        System.out.println(result.getBody().getClass());
-        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
-    }
 //    @Test
-//    void getRandom() {
-//        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/test/random", Integer.class);
+//    void getallAvg() {
+//        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/all", Temp.class);
 //        Assertions.assertNotNull(result);
 //        System.out.println("result");
 //        System.out.println(result.getBody().toString());
 //        System.out.println(result.getBody().getClass());
 //        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
 //    }
+    @Test
+    void getRandom() {
+        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/test/random", Integer.class);
+        Assertions.assertNotNull(result);
+        System.out.println("result");
+        System.out.println(result.getBody().toString());
+        System.out.println(result.getBody().getClass());
+        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
+    }
 //    @Test
 //    void getWeek() {
 //        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/past/7days", Temps.class);
