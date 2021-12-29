@@ -1,7 +1,6 @@
 package rudolfisky.demotica_dashboardtemperature_service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.List;
 import net.minidev.json.JSONObject;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,12 +12,10 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import rudolfisky.demotica_dashboardtemperature_service.models.Temp;
 import org.springframework.http.HttpHeaders;
-import rudolfisky.demotica_dashboardtemperature_service.models.Temps;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ExtendWith(SpringExtension.class)
@@ -26,16 +23,7 @@ import rudolfisky.demotica_dashboardtemperature_service.models.Temps;
 public class TempIntegrationTests {
 
     @Autowired
-    private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
-
-    @Autowired
     private TestRestTemplate testRestTemplate;
-
-    @LocalServerPort
-    private Integer port;
 
     private String tempUrl;
     private HttpHeaders headers;
@@ -53,21 +41,6 @@ public class TempIntegrationTests {
         tempPostObject.put("creationDateTime", "2021-11-12 12:34:56");
         tempPostObject.put("temp", "20");
     }
-
-    @Test
-    void printPortsInUse() {
-        System.out.println(port); // 8042
-    }
-
-//    @Sql({ "schema.sql", "data.sql" })
-//    @Test
-//    public void testAllEmployees()
-//    {
-//        Assertions.assertTrue(
-//                this.testRestTemplate
-//                        .getForObject("http://localhost:" + port + "/temps/all", Temps.class)
-//                        .getDailyTemps().size() == 3);
-//    }
 
     @Test
     void getallAvg() {
