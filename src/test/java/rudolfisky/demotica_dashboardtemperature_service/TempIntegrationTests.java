@@ -73,7 +73,8 @@ public class TempIntegrationTests {
 //        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
 //    }
     @Test
-;cv                                                 ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/hour", Temp.class);
+    void getHour() {
+        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/hour", Temp.class);
         Assertions.assertNotNull(result);
         System.out.println("result");
         System.out.println(result.getBody().toString());
