@@ -2,9 +2,6 @@ package rudolfisky.demotica_dashboardtemperature_service.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import rudolfisky.demotica_dashboardtemperature_service.models.Temp;
 import rudolfisky.demotica_dashboardtemperature_service.resources.TempDB;
 
@@ -29,6 +26,7 @@ public class TempService {
     }
 
     public double getallAvg()  {
+        System.out.println("getallAvg()");
         Iterable<Temp> temps = tempDB.findAll();
 
         double sum = 0;
@@ -50,21 +48,22 @@ public class TempService {
         return randomWithMathRandom;
     }
 
-    public Iterable<Temp> getWeek()  {
-        List<Temp> temps = tempDB.getPast7Days();
-        double sum = 0;
-        for (Temp temp : temps){
-            sum += temp.getTemp();
-        }
-        double avg = sum / temps.size();
-        avg = avg * 100;
-        avg = Math.round(avg);
-        avg = avg / 100;
-
-        System.out.println(sum);
-        System.out.println(avg);
-        return temps;
-    }
+//    public Iterable<Temp> getWeek()  {
+//        System.out.println("getWeek()");
+//        List<Temp> temps = tempDB.getPast7Days();
+//        double sum = 0;
+//        for (Temp temp : temps){
+//            sum += temp.getTemp();
+//        }
+//        double avg = sum / temps.size();
+//        avg = avg * 100;
+//        avg = Math.round(avg);
+//        avg = avg / 100;
+//
+//        System.out.println(sum);
+//        System.out.println(avg);
+//        return temps;
+//    }
 
     public double getHour()  {
         List<Temp> temps = tempDB.getPastHour();
