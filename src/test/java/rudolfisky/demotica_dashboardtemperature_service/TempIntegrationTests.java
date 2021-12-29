@@ -69,32 +69,32 @@ public class TempIntegrationTests {
 //        System.out.println(result.getBody().getClass());
 //        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
 //    }
-    @Test
-    void getHour() {
-        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/hour", Temp.class);
-        Assertions.assertNotNull(result);
-        System.out.println("result");
-        System.out.println(result.getBody().toString());
-        System.out.println(result.getBody().getClass());
-        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
-    }
-    @Test
-    void getMinuteAvg() {
-        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/minute", Temp.class);
-        Assertions.assertNotNull(result);
-        System.out.println("result");
-        System.out.println(result.getBody().toString());
-        System.out.println(result.getBody().getClass());
-        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
-    }
-    @Test
-    void get10SecAvg() {
-        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/10sec", Temp.class);
-        Assertions.assertNotNull(result);
-        System.out.println("result");
-        System.out.println(result.getBody().toString());
-        System.out.println(result.getBody().getClass());
-        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
-    }
+//    @Test
+//    void getHour() {
+//        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/hour", Temp.class);
+//        Assertions.assertNotNull(result);
+//        System.out.println("result");
+//        System.out.println(result.getBody().toString());
+//        System.out.println(result.getBody().getClass());
+//        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
+//    }
+//    @Test
+//    void getMinuteAvg() {
+//        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/minute", Temp.class);
+//        Assertions.assertNotNull(result);
+//        System.out.println("result");
+//        System.out.println(result.getBody().toString());
+//        System.out.println(result.getBody().getClass());
+//        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
+//    }
+//    @Test
+//    void get10SecAvg() {
+//        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/10sec", Temp.class);
+//        Assertions.assertNotNull(result);
+//        System.out.println("result");
+//        System.out.println(result.getBody().toString());
+//        System.out.println(result.getBody().getClass());
+//        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
+//    }
 
 }
