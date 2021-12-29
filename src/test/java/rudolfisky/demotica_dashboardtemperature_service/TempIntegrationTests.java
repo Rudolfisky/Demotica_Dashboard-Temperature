@@ -17,6 +17,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import rudolfisky.demotica_dashboardtemperature_service.models.Temp;
 import org.springframework.http.HttpHeaders;
 
+import java.time.LocalDateTime;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
@@ -38,7 +40,8 @@ public class TempIntegrationTests {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         tempPostObject = new JSONObject();
-        tempPostObject.put("creationDateTime", "2021-11-12 12:34:56");
+        LocalDateTime creationDateTime = LocalDateTime.now();
+        tempPostObject.put("creationDateTime", creationDateTime);
         tempPostObject.put("temp", "20");
     }
 
@@ -69,32 +72,31 @@ public class TempIntegrationTests {
 //        System.out.println(result.getBody().getClass());
 //        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
 //    }
-//    @Test
-//    void getHour() {
-//        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/hour", Temp.class);
-//        Assertions.assertNotNull(result);
-//        System.out.println("result");
-//        System.out.println(result.getBody().toString());
-//        System.out.println(result.getBody().getClass());
-//        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
-//    }
-//    @Test
-//    void getMinuteAvg() {
-//        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/minute", Temp.class);
-//        Assertions.assertNotNull(result);
-//        System.out.println("result");
-//        System.out.println(result.getBody().toString());
-//        System.out.println(result.getBody().getClass());
-//        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
-//    }
-//    @Test
-//    void get10SecAvg() {
-//        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/10sec", Temp.class);
-//        Assertions.assertNotNull(result);
-//        System.out.println("result");
-//        System.out.println(result.getBody().toString());
-//        System.out.println(result.getBody().getClass());
-//        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
-//    }
+    @Test
+;cv                                                 ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/hour", Temp.class);
+        Assertions.assertNotNull(result);
+        System.out.println("result");
+        System.out.println(result.getBody().toString());
+        System.out.println(result.getBody().getClass());
+        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
+    }
+    @Test
+    void getMinuteAvg() {
+        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/minute", Temp.class);
+        Assertions.assertNotNull(result);
+        System.out.println("result");
+        System.out.println(result.getBody().toString());
+        System.out.println(result.getBody().getClass());
+        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
+    }
+    @Test
+    void get10SecAvg() {
+        ResponseEntity result = testRestTemplate.getForEntity(tempUrl+"/average/10sec", Temp.class);
+        Assertions.assertNotNull(result);
+        System.out.println("result");
+        System.out.println(result.getBody().toString());
+        System.out.println(result.getBody().getClass());
+        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
+    }
 
 }
