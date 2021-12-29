@@ -39,10 +39,10 @@ public class TempController {
         return service.getRandom();
     }
 
-    @GetMapping(path="/past/7days")
-    public @ResponseBody Iterable<Temp> getWeek()  {
-        return service.getWeek();
-    }
+//    @GetMapping(path="/past/7days")
+//    public @ResponseBody Iterable<Temp> getWeek()  {
+//        return service.getWeek();
+//    }
 
     @GetMapping(path="/average/hour")
     public @ResponseBody double getHour()  {
