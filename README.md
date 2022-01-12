@@ -4,4 +4,3 @@
 [![development CI](https://github.com/Rudolfisky/Demotica_Dashboard-Temperature_Service/actions/workflows/development_CI.yml/badge.svg)](https://github.com/Rudolfisky/Demotica_Dashboard-Temperature_Service/actions/workflows/development_CI.yml)
 # Demotica_Dashboard-Temperature_Service
 Spring boot MQTT REST Application for handling and storing temperature data
-
